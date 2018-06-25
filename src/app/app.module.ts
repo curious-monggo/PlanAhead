@@ -5,12 +5,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { DetailPage } from '../pages/detail/detail';
+/*import { HomePage } from '../pages/home/home';
+import { DetailPage } from '../pages/detail/detail';*/
 import { CourseProvider } from '../providers/course/course';
 
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
+
+import { Facebook } from '@ionic-native/facebook';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyATPIxkfOU5YK83yeND4tTAkt1gZNuPqew",
@@ -23,27 +28,27 @@ export const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    DetailPage
+    MyApp
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    DetailPage
+    MyApp
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CourseProvider,
-    AngularFireDatabase
+    AngularFireDatabase,
+    AuthProvider,
+    AngularFireAuth,
+    Facebook
   ]
 })
 export class AppModule {}

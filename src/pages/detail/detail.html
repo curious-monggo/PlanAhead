@@ -8,11 +8,34 @@
 
   <ion-navbar>
     <ion-title>detail</ion-title>
+    <ion-buttons right>
+    	<button (click)="updateCourse()" ion-button icon-only><ion-icon name="create"></ion-icon></button>
+    	<button (click)="deleteCourse()" ion-button icon-only><ion-icon name="trash"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+	<ion-card *ngIf="course">
+		<ng-container *ngIf="!isEdit">
+			<ion-card-content>
+				{{id}} {{course.name}}
+			</ion-card-content>	
+		</ng-container>
 
+		<ng-container *ngIf="isEdit">
+			<ion-card-header>
+			    Update course in Firebase
+			</ion-card-header>
+			<ion-card-content>
+				<form (ngSubmit)="onSubmitUpdate()">
+					<ion-input [(ngModel)]="courseOnEdit.name" name="name" type="text"></ion-input>
+					<button ion-button type="submit">Update</button>
+				</form>
+			</ion-card-content>
+		</ng-container>
+
+	</ion-card>
 </ion-content>

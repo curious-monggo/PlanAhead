@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { DetailPage } from '../../pages/detail/detail';
 import { Course } from '../../models/Course';
 import { CourseProvider } from '../../providers/course/course';
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -23,7 +24,7 @@ export class HomePage {
   }
 
   navigateToDetailPage(id){
-  	this.navCtrl.push(DetailPage, {
+  	this.navCtrl.push('DetailPage', {
       id: id
     });
 /*    this.pushToDetailPage = DetailPage;

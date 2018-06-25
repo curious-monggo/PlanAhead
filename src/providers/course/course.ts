@@ -45,10 +45,16 @@ export class CourseProvider {
   addCourse(course:Course){
   	this.coursesRef.push(course);
   }
-
+  updateCourse(id:string, course:Course){
+    this.coursesRef.update(id, course);
+  }
   getCourse(id:string){
     this.courseRef = this.db.object('/courses/'+id);
     this.course = this.courseRef.valueChanges();
   	return this.course;
+  }
+
+  deleteCourse(id:string){
+    this.coursesRef.remove(id);
   }
 }

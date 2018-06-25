@@ -12,26 +12,14 @@
 		    Insert course to Firebase
 		</ion-card-header>
 		<ion-card-content>
-<!-- 			<form (ngSubmit)="onSubmitAdd()">
-		      <ion-item>
-		        <ion-label>Todo</ion-label>
-		        <ion-input type="text" [(ngModel)]="todo.title" name="title"></ion-input>
-		      </ion-item>
-		      <ion-item>
-		        <ion-label>Description</ion-label>
-		        <ion-textarea [(ngModel)]="todo.description" name="description"></ion-textarea>
-		      </ion-item>
-		      <button ion-button type="submit" block>Add Todo</button>
-			</form> -->
 			<form (ngSubmit)="onSubmitAdd()">
 				<ion-input [(ngModel)]="course.name" name="name" type="text" placeholder="Course name"></ion-input>
 				<button ion-button type="submit">Add</button>
-				<!-- <button ion-button (click)="getCourses()">List</button>		 -->
 			</form>
 
 		</ion-card-content>
 	</ion-card>
-		<ion-list>
+		<ion-list *ngIf="courses?.length > 0; else noCourses">
 			<ion-card 
 			*ngFor="let course of courses" 
 			(click)="navigateToDetailPage(course.key)"
@@ -44,4 +32,12 @@
 				</ion-card-content>
 			</ion-card>
 		</ion-list>
+		<ng-template #noCourses>
+			<ion-card>
+			  <ion-card-content>
+			    There are no courses in the system. Check for account privileges...
+			  </ion-card-content>
+			
+			</ion-card>
+		</ng-template>
 </ion-content>
